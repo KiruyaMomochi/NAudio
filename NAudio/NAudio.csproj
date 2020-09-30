@@ -5,7 +5,7 @@
     <Authors>Mark Heath &amp; Contributors</Authors>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Description>NAudio, an audio library for .NET</Description>
-    <PackageLicenseUrl>https://github.com/naudio/NAudio/blob/master/license.txt</PackageLicenseUrl>
+    <PackageLicense>https://github.com/naudio/NAudio/blob/master/license.txt</PackageLicense>
     <PackageProjectUrl>https://github.com/naudio/NAudio</PackageProjectUrl>
     <PackageTags>C# .NET audio sound</PackageTags>
     <RepositoryUrl>https://github.com/naudio/NAudio</RepositoryUrl>
@@ -15,15 +15,23 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.0' ">
-    <UseWindowsForms>true</UseWindowsForms>
+    <!--<UseWindowsForms>true</UseWindowsForms>-->
+    <UseWindownForms>false</UseWindownForms>
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Compile Remove="Gui\*.*" />
+    <Compile Remove="Utils\ProgressLog*.*" />
+    <Compile Remove="Wave\MmeInterop\WaveWindow.cs" />
+    <Compile Remove="Wave\MmeInterop\WaveCallbackInfo.cs" />
+    <Compile Remove="Wave\WaveInputs\WaveIn.cs" />
+    <Compile Remove="Wave\WaveOutputs\WaveOut.cs" />
+
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
-    <Reference Include="System.Windows.Forms" />
+    <!--<Reference Include="System.Windows.Forms" />-->
     <Compile Remove="Wave\WaveOutputs\WasapiOutRT.cs" />
     <Compile Remove="Wave\WaveInputs\WasapiCaptureRT.cs" />
     <Compile Remove="Wave\WaveOutputs\WaveFileWriterRT.cs" />
@@ -96,5 +104,23 @@
     <PackageReference Include="System.Resources.Extensions">
       <Version>4.7.0</Version>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Gui\Fader.Designer.cs">
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Update="Gui\PanSlider.Designer.cs">
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Update="Gui\Pot.Designer.cs">
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Update="Gui\VolumeSlider.Designer.cs">
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Update="Gui\WaveViewer.Designer.cs">
+      <DesignTime>True</DesignTime>
+    </Compile>
   </ItemGroup>
 </Project>
